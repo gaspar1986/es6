@@ -3,27 +3,22 @@
 var obj = {
     name: 'yongfeng',
     courses: ['react', 'nodejs', 'mongodb'],
-    getMessage: function() {
+    getMessage: function getMessage() {
         if (!Array.prototype.forEach) {
-            Array.prototype.forEach = function(fun) {
-                var len = this.length;
-                if (typeof fun != "function")
+            Array.prototype.forEach = function (fn, that) {
+                //that代表obj对象
+                var lenth = this.length; //this表示this.courses
+                if (typeof fn != "function") {
                     throw new TypeError();
-                var thisp = arguments[1];
-                for (var i = 0; i < len; i++) {
-                    if (i in this)
-                        fun.call(thisp, this[i], i, this);
+                }
+                for (var i = 0; i < lenth; i++) {
+                    fn.call(that, this[i]);
                 }
             };
-        }else{
-
-        	this.courses.forEach(function(item) {
-        	    console.log(this.name + ' teach us ' + item);
-        	}, this);
         }
+        this.courses.forEach(function (item) {
+            console.log(this.name + ' teach us ' + item);
+        }, this);
     }
 };
 obj.getMessage();
-
-
-
