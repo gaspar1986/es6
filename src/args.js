@@ -12,6 +12,9 @@ function argv(obj,...rest){
 var data = {title:'es6',content:'daydayup'}
 argv(data,'tyg')
 
+f => {
+	console.log(f+11);
+}
 /**
 
 */
